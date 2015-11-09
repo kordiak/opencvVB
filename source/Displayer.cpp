@@ -6,9 +6,15 @@
  */
 
 #include "../headers/Displayer.h"
-
+#include "../headers/ProgramManager.h"
 Displayer::Displayer()
 {
+  cv::namedWindow("output");
+  cv::setMouseCallback("output",onMouse,this);
+}
+Displayer::Displayer(ProgramManager * prManager)
+{
+  prManager=prManager;
   cv::namedWindow("output");
   cv::setMouseCallback("output",onMouse,this);
 }
@@ -26,13 +32,13 @@ Displayer::~Displayer() {
 ///METHODS/////
 void Displayer::onMouse(int eventType,int x,int y,int cos,void* ptr)
 {
- 
+  
   if(eventType==cv::EVENT_LBUTTONDOWN)
   {
   Displayer *disp = reinterpret_cast<Displayer*>(ptr);
   
   MouseEvent event(eventType,x,y);
-  disp->TranslateEvents (event);
+  disp->prManager->SendEvent(disp->TranslateEvents (event));
   }
 }
 
@@ -54,6 +60,7 @@ bool Displayer::Draw (const cv::Mat& bigpicture)
   
   if(matWhole.empty())
   {
+     
   unsigned int buttonWidth=200;
   unsigned int buttonHeight=50;
   matWhole=cv::Mat(picture.rows+buttonHeight,picture.cols+buttonWidth+1,picture.type (),cv::Scalar(0));
@@ -70,9 +77,9 @@ bool Displayer::Draw (const cv::Mat& bigpicture)
   thirdButtonPos.y+=buttonHeight+1;
   
   
-  menu.addElement(new FieldWithText(firstButtonPos,firstButtonText));
-  menu.addElement(new FieldWithText(secondButtonPos,secondButtonText));
-  menu.addElement (new FieldWithText(thirdButtonPos,thirdButtonText));
+  menu.addElement(new FieldWithText(firstButtonPos,firstButtonText,ProgramEvent::EVENT_SEARCH));
+  menu.addElement(new FieldWithText(secondButtonPos,secondButtonText,ProgramEvent::EVENT_CALIBRATE));
+  menu.addElement (new FieldWithText(thirdButtonPos,thirdButtonText,ProgramEvent::EVENT_SELECT));
   
   menu.draw(matWhole);
   }

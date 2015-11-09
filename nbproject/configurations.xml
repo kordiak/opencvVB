@@ -7,6 +7,7 @@
       <itemPath>headers/Displayer.h</itemPath>
       <itemPath>headers/FieldWithText.h</itemPath>
       <itemPath>headers/Menu.h</itemPath>
+      <itemPath>headers/ProgramManager.h</itemPath>
       <itemPath>headers/opencvHeaders.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -19,6 +20,7 @@
       <itemPath>source/Displayer.cpp</itemPath>
       <itemPath>source/FieldWithText.cpp</itemPath>
       <itemPath>source/Menu.cpp</itemPath>
+      <itemPath>source/ProgramManager.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -64,6 +66,8 @@
       </item>
       <item path="headers/Menu.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/ProgramManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -73,6 +77,8 @@
       <item path="source/FieldWithText.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/Menu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ProgramManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -101,6 +107,8 @@
       </item>
       <item path="headers/Menu.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/ProgramManager.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
@@ -110,6 +118,8 @@
       <item path="source/FieldWithText.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/Menu.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ProgramManager.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -38,7 +38,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/source/Displayer.o \
 	${OBJECTDIR}/source/FieldWithText.o \
-	${OBJECTDIR}/source/Menu.o
+	${OBJECTDIR}/source/Menu.o \
+	${OBJECTDIR}/source/ProgramManager.o
 
 
 # C Compiler Flags
@@ -96,6 +97,11 @@ ${OBJECTDIR}/source/Menu.o: source/Menu.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Menu.o source/Menu.cpp
+
+${OBJECTDIR}/source/ProgramManager.o: source/ProgramManager.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ProgramManager.o source/ProgramManager.cpp
 
 # Subprojects
 .build-subprojects:

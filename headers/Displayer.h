@@ -10,16 +10,18 @@
 #include <iostream>
 #include "opencvHeaders.h"
 #include "FieldWithText.h"
+//#include "ProgramManager.h"
 #include "Menu.h"
 
 
-
+class ProgramManager;
 
 
 class Displayer 
 {
   
   cv::Mat matWhole;
+  ProgramManager * prManager;
   static void onMouse(int event,int x,int y,int,void*);
   Menu menu;
   
@@ -27,8 +29,10 @@ class Displayer
   
 public:
     ProgramEvent TranslateEvents(MouseEvent &); // receive event and pass it to menu
+    
     bool Draw(const cv::Mat&);
     Displayer();
+    Displayer(ProgramManager * prManager);
     Displayer(const Displayer& orig);
     virtual ~Displayer();
 private:

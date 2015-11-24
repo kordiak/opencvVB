@@ -7,14 +7,14 @@
 
 
 
-#include "../headers/Menu.h"
+#include "../headers/ButtonsList.h"
 
 
-Menu::Menu () { }
+ButtonsList::ButtonsList () { }
 
-Menu::Menu (const Menu& orig) { }
+ButtonsList::ButtonsList (const ButtonsList& orig) { }
 
-Menu::~Menu () 
+ButtonsList::~ButtonsList () 
 {
   unsigned int size=elements.size();
   for(unsigned int i=0;i < size;++i)
@@ -27,12 +27,12 @@ Menu::~Menu ()
 ////METHODS//
 
 
-void Menu::addElement(FieldWithText* field)
+void ButtonsList::addElement(FieldWithText* field)
 {
   this->elements.push_back (field);
 }
 //todo
-void Menu::removeElements()
+void ButtonsList::removeElements()
 {
   unsigned int size=elements.size();
   for(unsigned int i=0;i<size;++i)
@@ -43,7 +43,7 @@ void Menu::removeElements()
   elements.clear();
     
 }
-ProgramEvent Menu::translateEvents(MouseEvent& event)
+ProgramEvent ButtonsList::translateEvents(MouseEvent& event)
 {
  
   unsigned int size=elements.size();
@@ -57,7 +57,7 @@ ProgramEvent Menu::translateEvents(MouseEvent& event)
   return EVENT_NOTME;
 }
 
-void Menu::draw(cv::Mat& output)
+void ButtonsList::draw(cv::Mat& output)
 {
   unsigned int size=elements.size ();
   for(unsigned int i=0;i< size;++i)

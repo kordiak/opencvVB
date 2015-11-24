@@ -5,37 +5,37 @@
  * Created on 22 październik 2015, 19:45
  */
 
-#include "../headers/Displayer.h"
-#include "../headers/ProgramManager.h"
-Displayer::Displayer()
+#include "../headers/WindowView.h"
+#include "../headers/WindowController.h"
+WindowView::WindowView()
 {
   cv::namedWindow("output");
   cv::setMouseCallback("output",onMouse,this);
 }
-Displayer::Displayer(ProgramManager * prManager)
+WindowView::WindowView(WindowController * prManager)
 {
   prManager=prManager;
   cv::namedWindow("output");
   cv::setMouseCallback("output",onMouse,this);
 }
 
-Displayer::Displayer(const Displayer& orig) 
+WindowView::WindowView(const WindowView& orig) 
 {
   
 }
 
-Displayer::~Displayer() {
+WindowView::~WindowView() {
 }
 
 
 ////////////////
 ///METHODS/////
-void Displayer::onMouse(int eventType,int x,int y,int cos,void* ptr)
+void WindowView::onMouse(int eventType,int x,int y,int cos,void* ptr)
 {
   
   if(eventType==cv::EVENT_LBUTTONDOWN)
   {
-  Displayer *disp = reinterpret_cast<Displayer*>(ptr);
+  WindowView *disp = reinterpret_cast<WindowView*>(ptr);
   
   MouseEvent event(eventType,x,y);
   disp->prManager->SendEvent(disp->TranslateEvents (event));
@@ -43,7 +43,7 @@ void Displayer::onMouse(int eventType,int x,int y,int cos,void* ptr)
 }
 
 
-void Displayer::changeSize(const cv::Mat & input,cv::Mat & output)
+void WindowView::changeSize(const cv::Mat & input,cv::Mat & output)
 {
   output =cv::Mat(cv::Size(400,300),CV_8U);
   cv::resize(input,output,output.size(),0,0);
@@ -51,7 +51,7 @@ void Displayer::changeSize(const cv::Mat & input,cv::Mat & output)
 
 
 
-bool Displayer::Draw (const cv::Mat& bigpicture)
+bool WindowView::Draw (const cv::Mat& bigpicture)
 {
   
   cv::Mat picture;
@@ -93,7 +93,7 @@ bool Displayer::Draw (const cv::Mat& bigpicture)
 }
 
 
-ProgramEvent Displayer::TranslateEvents(MouseEvent & event)
+ProgramEvent WindowView::TranslateEvents(MouseEvent & event)
 {
  ProgramEvent evt= menu.translateEvents (event);
  return evt;

@@ -5,25 +5,25 @@
  * Created on 22 październik 2015, 19:45
  */
 
-#ifndef DISPLAYER_H
-#define	DISPLAYER_H
+#ifndef WINDOWVIEW_H
+#define	WINDOWVIEW_H
 #include <iostream>
 #include "opencvHeaders.h"
 #include "FieldWithText.h"
 //#include "ProgramManager.h"
-#include "Menu.h"
+#include "ButtonsList.h"
 
 
-class ProgramManager;
+class WindowController;
 
 
-class Displayer 
+class WindowView 
 {
   
   cv::Mat matWhole;
-  ProgramManager * prManager;
+  WindowController * prManager;
   static void onMouse(int event,int x,int y,int,void*);
-  Menu menu;
+  ButtonsList menu;
   
     void changeSize(const cv::Mat & input,cv::Mat & output);
   
@@ -31,10 +31,10 @@ public:
     ProgramEvent TranslateEvents(MouseEvent &); // receive event and pass it to menu
     
     bool Draw(const cv::Mat&);
-    Displayer();
-    Displayer(ProgramManager * prManager);
-    Displayer(const Displayer& orig);
-    virtual ~Displayer();
+    WindowView();
+    WindowView(WindowController * prManager);
+    WindowView(const WindowView& orig);
+    virtual ~WindowView();
 private:
 
 };

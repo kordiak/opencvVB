@@ -4,10 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
-      <itemPath>headers/Displayer.h</itemPath>
+      <itemPath>headers/ButtonsList.h</itemPath>
       <itemPath>headers/FieldWithText.h</itemPath>
-      <itemPath>headers/Menu.h</itemPath>
-      <itemPath>headers/ProgramManager.h</itemPath>
+      <itemPath>headers/FileReader.h</itemPath>
+      <itemPath>headers/ImageSource.h</itemPath>
+      <itemPath>headers/WindowController.h</itemPath>
+      <itemPath>headers/WindowView.h</itemPath>
       <itemPath>headers/opencvHeaders.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -17,10 +19,12 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>source/Displayer.cpp</itemPath>
+      <itemPath>source/ButtonsList.cpp</itemPath>
       <itemPath>source/FieldWithText.cpp</itemPath>
-      <itemPath>source/Menu.cpp</itemPath>
-      <itemPath>source/ProgramManager.cpp</itemPath>
+      <itemPath>source/FileReader.cpp</itemPath>
+      <itemPath>source/ImageSource.cpp</itemPath>
+      <itemPath>source/WindowController.cpp</itemPath>
+      <itemPath>source/WindowView.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -39,7 +43,7 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>GNU|GNU</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -57,28 +61,38 @@
             <linkerLibFileItem>/usr/local/lib/libopencv_imgproc.so</linkerLibFileItem>
             <linkerLibFileItem>/usr/local/lib/libopencv_video.so</linkerLibFileItem>
             <linkerLibFileItem>/usr/local/lib/libopencv_videoio.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/local/lib/libopencv_calib3d.so</linkerLibFileItem>
+            <linkerLibFileItem>/usr/local/lib/libopencv_features2d.so</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
-      <item path="headers/Displayer.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/ButtonsList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/FieldWithText.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="headers/Menu.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/FileReader.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="headers/ProgramManager.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/ImageSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/WindowController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/WindowView.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/Displayer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/ButtonsList.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/FieldWithText.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/Menu.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/FileReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/ProgramManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/ImageSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/WindowController.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/WindowView.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -101,25 +115,33 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="headers/Displayer.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/ButtonsList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/FieldWithText.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="headers/Menu.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/FileReader.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="headers/ProgramManager.h" ex="false" tool="3" flavor2="0">
+      <item path="headers/ImageSource.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/WindowController.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/WindowView.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/Displayer.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/ButtonsList.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/FieldWithText.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/Menu.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/FileReader.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="source/ProgramManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="source/ImageSource.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/WindowController.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/WindowView.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

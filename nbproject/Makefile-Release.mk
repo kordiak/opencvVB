@@ -36,10 +36,12 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/source/Displayer.o \
+	${OBJECTDIR}/source/ButtonsList.o \
 	${OBJECTDIR}/source/FieldWithText.o \
-	${OBJECTDIR}/source/Menu.o \
-	${OBJECTDIR}/source/ProgramManager.o
+	${OBJECTDIR}/source/FileReader.o \
+	${OBJECTDIR}/source/ImageSource.o \
+	${OBJECTDIR}/source/WindowController.o \
+	${OBJECTDIR}/source/WindowView.o
 
 
 # C Compiler Flags
@@ -71,25 +73,35 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
-${OBJECTDIR}/source/Displayer.o: source/Displayer.cpp 
+${OBJECTDIR}/source/ButtonsList.o: source/ButtonsList.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Displayer.o source/Displayer.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ButtonsList.o source/ButtonsList.cpp
 
 ${OBJECTDIR}/source/FieldWithText.o: source/FieldWithText.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/FieldWithText.o source/FieldWithText.cpp
 
-${OBJECTDIR}/source/Menu.o: source/Menu.cpp 
+${OBJECTDIR}/source/FileReader.o: source/FileReader.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Menu.o source/Menu.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/FileReader.o source/FileReader.cpp
 
-${OBJECTDIR}/source/ProgramManager.o: source/ProgramManager.cpp 
+${OBJECTDIR}/source/ImageSource.o: source/ImageSource.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ProgramManager.o source/ProgramManager.cpp
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ImageSource.o source/ImageSource.cpp
+
+${OBJECTDIR}/source/WindowController.o: source/WindowController.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/WindowController.o source/WindowController.cpp
+
+${OBJECTDIR}/source/WindowView.o: source/WindowView.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/WindowView.o source/WindowView.cpp
 
 # Subprojects
 .build-subprojects:

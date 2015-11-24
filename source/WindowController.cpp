@@ -5,26 +5,27 @@
  * Created on 1 listopad 2015, 14:26
  */
 
-#include "../headers/ProgramManager.h"
-#include "../headers/Displayer.h"
-ProgramManager::ProgramManager ()
+#include "../headers/WindowController.h"
+#include "../headers/WindowView.h"
+WindowController::WindowController ()
 {
-  this->disp=new Displayer(this);
+  this->disp=new WindowView(this);
   
 }
 
-ProgramManager::ProgramManager (const ProgramManager& orig) { }
+WindowController::WindowController (const WindowController& orig) { }
 
-void ProgramManager::SendEvent(ProgramEvent event)
+void WindowController::SendEvent(ProgramEvent event)
 {
   std::cout << event;
 }
 
-void ProgramManager::Run()
+void WindowController::Run()
 {
+
  
    // cv::Mat picture(20,20,CV_8U,cv::Scalar(255));
-    cv::Mat picture=cv::imread ("zrzut.png",CV_LOAD_IMAGE_GRAYSCALE);
+   cv::Mat picture=cv::imread ("zrzut.png",CV_LOAD_IMAGE_GRAYSCALE);
    //GetPictureFromWebCam("http://192.168.0.105:8080/video?x.mjpeg");
    //cv::resize(picture,picture,cv::Size(picture.cols/2,picture.rows/2));
    
@@ -32,8 +33,6 @@ void ProgramManager::Run()
    cv::Mat kernel(3,3,CV_32F,cv::Scalar(0));
    kernel.at <float>(1,0)=-1;
    kernel.at<float>(1,1)=20;
-   
-   
    
    cv::Mat result(picture.size(),CV_8U,cv::Scalar(0));
    cv::Mat right(picture.size(),CV_8U,cv::Scalar(0));
@@ -48,7 +47,7 @@ void ProgramManager::Run()
    
    this->disp->Draw (result);
 }
-ProgramManager::~ProgramManager ()
+WindowController::~WindowController ()
 {
   delete disp;
 }

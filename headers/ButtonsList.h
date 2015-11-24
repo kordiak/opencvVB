@@ -5,8 +5,8 @@
  * Created on 24 październik 2015, 13:50
  */
 
-#ifndef MENU_H
-#define	MENU_H
+#ifndef BUTTONSLIST_H
+#define	BUTTONSLIST_H
 
 #include "opencvHeaders.h"
 #include "FieldWithText.h"
@@ -15,7 +15,7 @@
 
 
 
-class Menu
+class ButtonsList
 {
   
   std::vector<FieldWithText*> elements;
@@ -26,9 +26,9 @@ public:
   void removeElements();
   ProgramEvent translateEvents(MouseEvent & event);
   void draw(cv::Mat& output);
-  Menu ();
-  Menu (const Menu& orig);
-  virtual ~Menu ();
+  ButtonsList ();
+  ButtonsList (const ButtonsList& orig);
+  virtual ~ButtonsList ();
 private:
 
 };

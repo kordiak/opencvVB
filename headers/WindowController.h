@@ -6,26 +6,26 @@
  */
 
 
-#ifndef PROGRAMMANAGER_H
-#define	PROGRAMMANAGER_H
+#ifndef WINDOWCONTROLLER_H
+#define	WINDOWCONTROLLER_H
 
 #include "opencvHeaders.h"
 #include <iostream>
-#include "Displayer.h"
+#include "WindowView.h"
 
 
 
-class ProgramManager
+class WindowController
 {
-  Displayer * disp;
+  WindowView * disp;
   
 public:
   
   void SendEvent(ProgramEvent event);
   void Run();
-  ProgramManager ();
-  ProgramManager (const ProgramManager& orig);
-  virtual ~ProgramManager ();
+  WindowController ();
+  WindowController (const WindowController& orig);
+  virtual ~WindowController ();
 private:
 
 };

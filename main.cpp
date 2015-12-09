@@ -8,14 +8,20 @@
 #include <cstdlib>
 #include <cstdio>
 #include <iostream>
-#include "headers/opencvHeaders.h"
+#include <fstream>
 #include <thread>
+
+
+#include "headers/opencvHeaders.h"
+
 #include "headers/WindowController.h"
 #include "headers/WindowView.h"
 #include "headers/ImageSource.h"
-#include <fstream>
+#include "headers/Calibrator.h"
+#include "headers/ElementDetector.h"
 
-#include "opencv2/calib3d/calib3d.hpp"
+#include "headers/SASimple.h"
+
 #include <opencv2/features2d/features2d.hpp>
 
 
@@ -107,33 +113,81 @@ int main(int argc, char** argv)
   
   
   
-    ImageSource fr("sos/chess.png");
-    
-    cv::Mat pattern=fr.GetImage ();
-    std::vector<cv::Vec2f> buffor;
-  
-    cv::Mat output;
+    ImageSource fr("sos/chess/WP_20151130_14_45_25_Pro.jpg");
+    Calibrator calib;
     cv::Size sizeOfPattern(9,6);
-    bool found=cv::findChessboardCorners (pattern,sizeOfPattern,output,cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FILTER_QUADS );
+    calib.Calibrate ("sos/chess",sizeOfPattern);
+    
+    SASimple *sas=new SASimple;
+    ElementDetector detector(sas);
+    
+    cv::Mat input=fr.GetImage ();
+    cv::cvtColor(input,input,CV_BGR2GRAY);
+    cv::Mat pattern;
+    calib.Undistort (input,pattern);
+   
+    detector.Detect(pattern);
+    
+    
+    
+   // std::vector<cv::Vec2f> buffor;
+    //cv::imshow("und",pattern);
+   //  cv::Mat output;
+    // std::vector<cv::Vec2f> out;
+    //std::vector<std::vector<cv::Vec3f> > output;
+    /*
+    
+    int i=0; bool found=false;
+    while(i<3)
+      {i++;
+      cv::flip(pattern,pattern,i);
+        found=cv::findChessboardCorners (pattern,sizeOfPattern,out);
+      }
+    
+    
+
     if(found)
       {
-            std::cout << std::endl << "Found for : " << 9 << " " << 6 << std::endl;
-           
-            
-            
-            cv::Vec2f *ptr=reinterpret_cast<cv::Vec2f*> (output.data);
-             for(int i=0;i< output.rows;++i)
+        
+        cv::cvtColor (pattern,pattern,CV_BGR2GRAY);
+        
+        cv::cornerSubPix (pattern,out,cv::Size(11,11),cv::Size(-1,-1),cv::TermCriteria(cv::TermCriteria::EPS+cv::TermCriteria::COUNT,30,0.1));
+        
+        cv::drawChessboardCorners (pattern,sizeOfPattern,cv::Mat(out),found);
+        
+        
+        cv::Mat cameraMatrix=cv::Mat::eye (3,3,CV_64F);
+        cv::Mat distCoeffs=cv::Mat::zeros(8,1,CV_64F);
+        
+        std::vector<std::vector<cv::Point3f> > corners(1);
+        float squaresize=1.f;
+        
+        
+        for(unsigned int i=0;i<sizeOfPattern.height;++i)
+          {
+            for(unsigned int j=0;j<sizeOfPattern.width;++j)
               {
-                 
-                std::cout << ptr[i]<< std::endl;
+                corners[0].push_back (cv::Point3f(static_cast<float>(j*squaresize),static_cast<float>(i*squaresize),0.f));
               }
-            
-            
+          }
+        //todo!!! many finds;
+        corners.resize(10,corners[0]);
+        
+               std::cout << std::endl << "Found for : " << 9 << " " << 6 << std::endl;
+               std::cout <<  std::endl;
+               
+               for(int i=0;i<out.size();++i)
+                {
+                    std::cout << out[i]<< std::endl;
+                }
+           
+               //cv::un
             
             
       }
     
      cv::imshow("ok",pattern);
+     */
     //cv::imshow("ok",fr.GetImage ());
     //cv::waitKey (0);
    

@@ -14,6 +14,7 @@
 #include <opencv2/video.hpp>
 #include <opencv2/videoio.hpp>
 #include <opencv2/imgproc.hpp>
+#include "opencv2/calib3d/calib3d.hpp"
 
 struct MouseEvent
 {

@@ -156,7 +156,7 @@ ImageSource::getFilesName (const char* filename, FILENAMES & filenames)
   return false;
 }
 
-ImageSource::ImageSource (const char* filename, int type) : position (0)
+ImageSource::ImageSource (const char* filename, int type) : position (0), eos(false)
 {
 
   
@@ -222,7 +222,14 @@ ImageSource::GetImage ()
     }
   
   if(newMat.empty())
+    {
+      eos=true;
       return cv::Mat(10,10,CV_8UC1,cv::Scalar(0));
-  
+    }
   return newMat;
+}
+
+bool ImageSource::EOS() const
+{
+  return eos;
 }

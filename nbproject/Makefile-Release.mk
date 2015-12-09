@@ -37,9 +37,13 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/source/ButtonsList.o \
+	${OBJECTDIR}/source/Calibrator.o \
+	${OBJECTDIR}/source/ElementDetector.o \
 	${OBJECTDIR}/source/FieldWithText.o \
 	${OBJECTDIR}/source/FileReader.o \
 	${OBJECTDIR}/source/ImageSource.o \
+	${OBJECTDIR}/source/SASimple.o \
+	${OBJECTDIR}/source/SearchingAlgorithmBase.o \
 	${OBJECTDIR}/source/WindowController.o \
 	${OBJECTDIR}/source/WindowView.o
 
@@ -78,6 +82,16 @@ ${OBJECTDIR}/source/ButtonsList.o: source/ButtonsList.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ButtonsList.o source/ButtonsList.cpp
 
+${OBJECTDIR}/source/Calibrator.o: source/Calibrator.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Calibrator.o source/Calibrator.cpp
+
+${OBJECTDIR}/source/ElementDetector.o: source/ElementDetector.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ElementDetector.o source/ElementDetector.cpp
+
 ${OBJECTDIR}/source/FieldWithText.o: source/FieldWithText.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
@@ -92,6 +106,16 @@ ${OBJECTDIR}/source/ImageSource.o: source/ImageSource.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ImageSource.o source/ImageSource.cpp
+
+${OBJECTDIR}/source/SASimple.o: source/SASimple.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SASimple.o source/SASimple.cpp
+
+${OBJECTDIR}/source/SearchingAlgorithmBase.o: source/SearchingAlgorithmBase.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SearchingAlgorithmBase.o source/SearchingAlgorithmBase.cpp
 
 ${OBJECTDIR}/source/WindowController.o: source/WindowController.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source

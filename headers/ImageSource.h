@@ -25,7 +25,7 @@ class ImageSource
 {
 private:
   
-  
+  bool eos;
   std::vector<cv::Mat*> images;
   cv::Mat picture;
   
@@ -41,10 +41,11 @@ private:
   void stringtolower(char *);
   
 public:
+  
   enum source_type {photo,http,video};
   ImageSource (const char* filename,int type=-1);
   ImageSource (const ImageSource& orig);
- 
+  bool EOS() const;
   source_type GetType() const;
   cv::Mat GetImage() ;
   virtual ~ImageSource ();

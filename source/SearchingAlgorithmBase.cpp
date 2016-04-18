@@ -12,7 +12,12 @@
 
 SearchingAlgorithmBase::SearchingAlgorithmBase () { }
 
+
 SearchingAlgorithmBase::SearchingAlgorithmBase (const SearchingAlgorithmBase& orig) { }
 
 
 
+cv::Mat SearchingAlgorithmBase::GetOutput ()
+{
+  return outputMat;
+}

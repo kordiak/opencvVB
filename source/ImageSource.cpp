@@ -214,7 +214,7 @@ ImageSource::GetImage ()
       while (newMat.empty () && position < files.size ())
         {
           //std::cout << std::endl << files[position];
-          newMat = cv::imread (files[position].c_str());
+          newMat = cv::imread (files[position].c_str(),CV_LOAD_IMAGE_GRAYSCALE);
           position++;
 
         }

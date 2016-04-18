@@ -16,9 +16,18 @@
 #include <opencv2/imgproc.hpp>
 #include "opencv2/calib3d/calib3d.hpp"
 
+const int height=300;
+const int width=400;
+
+
 struct MouseEvent
 {
   int eventType,x,y,z;
+  
+  MouseEvent():eventType(0),x(-1),y(-1)
+  {
+    
+  }
   MouseEvent(int type,int x,int y): eventType(type),x(x),y(y)
   {
     
@@ -26,7 +35,7 @@ struct MouseEvent
 };
 
 
-enum ProgramEvent {EVENT_NOTME=-1,EVENT_NONE,EVENT_SEARCH,EVENT_CALIBRATE,EVENT_SELECT};
+enum ProgramEvent {EVENT_NOTME=-1,EVENT_NONE,EVENT_SEARCH,EVENT_CALIBRATE,EVENT_SELECT,EVENT_FREEZE,EVENT_CLOSE,EVENT_PAINT};
 
 
 #endif	/* OPENCVHEADERS_H */

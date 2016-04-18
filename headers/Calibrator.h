@@ -32,6 +32,7 @@ public:
   Calibrator ();
   Calibrator (const Calibrator& orig);
   cv::Mat Undistort(const cv::Mat& input,cv::Mat& output);
+  
   bool Calibrate(const char * name,const cv::Size& sizeofPattern);
   virtual ~Calibrator ();
 private:

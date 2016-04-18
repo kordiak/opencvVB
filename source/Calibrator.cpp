@@ -23,7 +23,7 @@ Calibrator::prepareImagePoints (ImageSource& imagesource, const cv::Size& sizeOf
 
   while ((!(image = imagesource.GetImage ()).empty ())&& !imagesource.EOS ())
     {
-      cv::cvtColor (image, image, CV_BGR2GRAY);
+      //cv::cvtColor (image, image, CV_BGR2GRAY);
       bool found = false;
       std::vector<cv::Point2f> singleImagePoints;
       found = cv::findChessboardCorners (image, sizeOfPattern, singleImagePoints);

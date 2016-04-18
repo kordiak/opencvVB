@@ -4,14 +4,18 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>headers/Application.h</itemPath>
       <itemPath>headers/ButtonsList.h</itemPath>
       <itemPath>headers/Calibrator.h</itemPath>
       <itemPath>headers/ElementDetector.h</itemPath>
       <itemPath>headers/FieldWithText.h</itemPath>
       <itemPath>headers/FileReader.h</itemPath>
       <itemPath>headers/ImageSource.h</itemPath>
+      <itemPath>headers/PLYGenerator.h</itemPath>
+      <itemPath>headers/Painter.h</itemPath>
       <itemPath>headers/SASimple.h</itemPath>
       <itemPath>headers/SearchingAlgorithmBase.h</itemPath>
+      <itemPath>headers/ViewThread.h</itemPath>
       <itemPath>headers/WindowController.h</itemPath>
       <itemPath>headers/WindowView.h</itemPath>
       <itemPath>headers/opencvHeaders.h</itemPath>
@@ -23,14 +27,18 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>source/Application.cpp</itemPath>
       <itemPath>source/ButtonsList.cpp</itemPath>
       <itemPath>source/Calibrator.cpp</itemPath>
       <itemPath>source/ElementDetector.cpp</itemPath>
       <itemPath>source/FieldWithText.cpp</itemPath>
       <itemPath>source/FileReader.cpp</itemPath>
       <itemPath>source/ImageSource.cpp</itemPath>
+      <itemPath>source/PLYGenerator.cpp</itemPath>
+      <itemPath>source/Painter.cpp</itemPath>
       <itemPath>source/SASimple.cpp</itemPath>
       <itemPath>source/SearchingAlgorithmBase.cpp</itemPath>
+      <itemPath>source/ViewThread.cpp</itemPath>
       <itemPath>source/WindowController.cpp</itemPath>
       <itemPath>source/WindowView.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
@@ -74,6 +82,8 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="headers/Application.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/ButtonsList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Calibrator.h" ex="false" tool="3" flavor2="0">
@@ -86,9 +96,15 @@
       </item>
       <item path="headers/ImageSource.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/PLYGenerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Painter.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/SASimple.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/SearchingAlgorithmBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/ViewThread.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/WindowController.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -97,6 +113,8 @@
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/ButtonsList.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -110,9 +128,15 @@
       </item>
       <item path="source/ImageSource.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/PLYGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Painter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/SASimple.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/SearchingAlgorithmBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ViewThread.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/WindowController.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -139,6 +163,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="headers/Application.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/ButtonsList.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/Calibrator.h" ex="false" tool="3" flavor2="0">
@@ -151,9 +177,15 @@
       </item>
       <item path="headers/ImageSource.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="headers/PLYGenerator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/Painter.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="headers/SASimple.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/SearchingAlgorithmBase.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="headers/ViewThread.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="headers/WindowController.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -162,6 +194,8 @@
       <item path="headers/opencvHeaders.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Application.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/ButtonsList.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -175,9 +209,15 @@
       </item>
       <item path="source/ImageSource.cpp" ex="false" tool="1" flavor2="0">
       </item>
+      <item path="source/PLYGenerator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/Painter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
       <item path="source/SASimple.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/SearchingAlgorithmBase.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="source/ViewThread.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="source/WindowController.cpp" ex="false" tool="1" flavor2="0">
       </item>

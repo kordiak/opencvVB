@@ -10,6 +10,7 @@
 #include <iostream>
 #include <fstream>
 #include <thread>
+#include <chrono>
 
 
 #include "headers/opencvHeaders.h"
@@ -19,6 +20,7 @@
 #include "headers/ImageSource.h"
 #include "headers/Calibrator.h"
 #include "headers/ElementDetector.h"
+#include "headers/Painter.h"
 
 #include "headers/SASimple.h"
 
@@ -70,135 +72,206 @@ cv::Mat GetPictureFromWebCam(const char* path)
 }
 
 
+void onMouse(int event,int x,int y,int flags, void * data)
+{
+  if(event == cv::EVENT_LBUTTONDOWN)
+    {
+      
+      
+      
+      Painter * paint=(Painter*) data;
+      
+      paint->Draw (x,y,event);
+      
+     // cv::Mat * mat=(cv::Mat*) data;
+     // painter.BrushPoint (*mat,x,y,20);
+      
+      
+    }
+}
+
 int main(int argc, char** argv) 
 {
-  
-  //cv::fin
-   // DIR * p;
-  
-    /*
-    FILE *file=fopen("sos","rb");
-    if(file!=0) std::cout << " OK";
-    else
-      return -1;
-    
-    char buffor[255];
-    std::memset(buffor,'\0',255);
-    
-    fread(buffor,1,255,file);
-    
-    for(int i=0;i<254;++i)
-      {
-        std::cout << (int)buffor[i];
-      }
-    
-    fclose(file);
-   
-  
-    
-    std::ifstream in;
-    in.open("sos",ifstream::in & ifstream::binary);
-    
-    
-    while(in.goodbit)
-     {
-        std::cout <<std::ios_base::hex<< (int)in.get();
-        
-     }
-    
-    in.close();
-    std::cout<< std::ios_base::hex << in;
-     * 
-    //*/
-  
-  
-  
-    ImageSource fr("sos/chess/WP_20151130_14_45_25_Pro.jpg");
-    Calibrator calib;
-    cv::Size sizeOfPattern(9,6);
-    calib.Calibrate ("sos/chess",sizeOfPattern);
-    
-    SASimple *sas=new SASimple;
-    ElementDetector detector(sas);
-    
-    cv::Mat input=fr.GetImage ();
-    cv::cvtColor(input,input,CV_BGR2GRAY);
-    cv::Mat pattern;
-    calib.Undistort (input,pattern);
-   
-    detector.Detect(pattern);
-    
-    
-    
-   // std::vector<cv::Vec2f> buffor;
-    //cv::imshow("und",pattern);
-   //  cv::Mat output;
-    // std::vector<cv::Vec2f> out;
-    //std::vector<std::vector<cv::Vec3f> > output;
-    /*
-    
-    int i=0; bool found=false;
-    while(i<3)
-      {i++;
-      cv::flip(pattern,pattern,i);
-        found=cv::findChessboardCorners (pattern,sizeOfPattern,out);
-      }
-    
-    
 
-    if(found)
-      {
+       WindowController pr;
+       pr.Run();
+      
+   
+     
+//     
+//         SASimple sa;
+//  
+//         ELEMENTS s;
+//        
+//  
+//        ImageSource fr("sos/czerwony.jpg");
+//        SASimpleParams pa;
+//        
+//        pa.threshold=20.0;
+//        sa.SetParameters (&pa);
+//       /* 
+//        cv::Mat ot=fr.GetImage ();
+//        
+//         sa.Find (s,ot);
+//        */
+//        cv::Mat zakretkiWczytane=fr.GetImage ();
+//        cv::Mat grad_u(zakretkiWczytane.size(),CV_8U,0);
+//        cv::Mat grad_v(zakretkiWczytane.size(),CV_8U,0);
+//        
+//        cv::Mat PodbityThreshold;
+//        
+//        
+//        cv::adaptiveThreshold (zakretkiWczytane,PodbityThreshold,255,cv::ADAPTIVE_THRESH_MEAN_C,cv::THRESH_BINARY,21,6);
+//       
+//        cv::Sobel(PodbityThreshold,grad_u,CV_8U,1,0,3);
+//        cv::Sobel(PodbityThreshold,grad_v,CV_8U,0,1,3);
+//        
+//        std::vector<std::vector<cv::Point> > array;
+//        std::vector<cv::Vec4i> hier;
+//      //   cv::cvtColor (zakretki,zakretki_gray,CV_BGR2GRAY);
+//        
+//        cv::Mat wynik= grad_v & grad_u;
+//        
+//        
+//        cv::Mat cannyOut;
+//        
+//        cv::Canny (PodbityThreshold,cannyOut,200,400);
+//        
+//        cv::findContours (cannyOut,array,hier,CV_RETR_TREE,CV_CHAIN_APPROX_SIMPLE,cv::Point(0,0));
+//        //cv::Canny
+//        
+//        
+//        cv::Mat contours(cannyOut.size(),cannyOut.type(),cv::Scalar(0));
+//       for(int i=0;i<array.size ();++i)
+//         if(array[i].size()>100)
+//        cv::drawContours (contours,array,i,cv::Scalar(255));
+//  
+//        cv::imwrite("plik.jpg",grad_u& grad_v& contours);
+//       
+//       
+//      //  Painter painter;
+//        
+//     //   painter.Paint (contours,0,200,100);
+//        
+//        
+//        //cv::namedWindow("contours",1);
+//        
+//        
+//        
+//        cv::imshow("podbityThreshold",PodbityThreshold);
+//        
+//        cv::imwrite("thresh.jpg",PodbityThreshold);
+//        cv::imwrite("canny.jpg",cannyOut);
+//        cv::imwrite("contours.jpg",contours);
+//        cv::imshow("cannyOut",cannyOut);
+//        
+//        
+//        
+//        
+//        
+//        cv::namedWindow("contours",1);
+//        
+//        Painter paint(&contours);
+//        
+//        paint.State (PainterState::POINT);
+//        
+//        
+//        cv::setMouseCallback("contours",onMouse,(void*) &paint);
+//        
+//        
+//        
+//        
+//        while(true)
+//          { cv::imshow("contours",contours);
+//            cv::waitKey (100);
+//          }
+//       
+//        
+//        
+//        cv::imshow("contours",contours);
+//        cv::waitKey ();
+//        
         
-        cv::cvtColor (pattern,pattern,CV_BGR2GRAY);
+             
+       //  cv::imwrite ("plik0.jpg",wynik);
+  
+       /*
         
-        cv::cornerSubPix (pattern,out,cv::Size(11,11),cv::Size(-1,-1),cv::TermCriteria(cv::TermCriteria::EPS+cv::TermCriteria::COUNT,30,0.1));
-        
-        cv::drawChessboardCorners (pattern,sizeOfPattern,cv::Mat(out),found);
-        
-        
-        cv::Mat cameraMatrix=cv::Mat::eye (3,3,CV_64F);
-        cv::Mat distCoeffs=cv::Mat::zeros(8,1,CV_64F);
-        
-        std::vector<std::vector<cv::Point3f> > corners(1);
-        float squaresize=1.f;
-        
-        
-        for(unsigned int i=0;i<sizeOfPattern.height;++i)
+        for(int i=0;i <array.size ();++i)
           {
-            for(unsigned int j=0;j<sizeOfPattern.width;++j)
+            int size=array[i].size();
+            if(size>20)
               {
-                corners[0].push_back (cv::Point3f(static_cast<float>(j*squaresize),static_cast<float>(i*squaresize),0.f));
+                
+                
+                
+                
+                
+                cv::Point max(0,0);
+                cv::Point min(end.cols,end.rows);
+                
+                for(int j=0; j<size;++j)
+                  {
+                    cv::Point point=array[i][j];
+                   
+                    if(point.x > max.x)
+                      max.x=point.x;
+                    else
+                      if(point.x < min.x)
+                        min.x=point.x;
+                    
+                    if(point.y > max.y)
+                      max.y=point.y;
+                    else
+                      if(point.y < min.y)
+                        min.y=point.y;
+                    
+                  }
+                
+                unsigned int width=max.x- min.x;
+                unsigned int height=max.y- max.y;
+                
+                
+                cv::Point center(max.x-width/2,max.y-height/2);
+                
+               // end.at<unsigned int>(center)=255;
+                
+                
+                
+               cv::line(end,max, min, cv::Scalar(255));
+                     
+
+                
+                
+                
+//                
+//                for(int v=0; v< height;++v)
+//                  {
+//                    for(int u=0; u< width;++u)
+//                      {
+//                        end.at<unsigned char>(v,u)=255;
+//                      }
+//                  }
+                
+                
               }
           }
-        //todo!!! many finds;
-        corners.resize(10,corners[0]);
+         
+         
+         
+         
+         
+         
         
-               std::cout << std::endl << "Found for : " << 9 << " " << 6 << std::endl;
-               std::cout <<  std::endl;
-               
-               for(int i=0;i<out.size();++i)
-                {
-                    std::cout << out[i]<< std::endl;
-                }
-           
-               //cv::un
-            
-            
-      }
-    
-     cv::imshow("ok",pattern);
-     */
-    //cv::imshow("ok",fr.GetImage ());
-    //cv::waitKey (0);
+      //  cv::imwrite ("plik.jpg",end);
+       // std::cout << "FLAGA: " << pr.flag;
    
+   */
+        
+        
+        //cv::im
     
-   // cv::imshow ("fifth",fr.GetImage ());
-    cv::Mat iro;
-    
-    WindowController pr;
-    // Displayer disp(&pr);
-    
-    pr.Run ();
+   // pr.Run ();
     
    
    //cv::imshow("output",result);
@@ -235,7 +308,7 @@ int main(int argc, char** argv)
 //    
 //    
 //    
-   cv::waitKey(0);
+  // cv::waitKey(0);
     
 
     return 0;

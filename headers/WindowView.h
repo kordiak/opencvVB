@@ -12,7 +12,7 @@
 #include "FieldWithText.h"
 //#include "ProgramManager.h"
 #include "ButtonsList.h"
-
+#include "thread"
 
 class WindowController;
 
@@ -21,16 +21,27 @@ class WindowView
 {
   
   cv::Mat matWhole;
-  WindowController * prManager;
+
+  
+  WindowController * mPrManager;
   static void onMouse(int event,int x,int y,int,void*);
-  ButtonsList menu;
+  ButtonsList mMenu;
+  MouseEvent mMouseEvent;
   
     void changeSize(const cv::Mat & input,cv::Mat & output);
   
 public:
+  
+    
+  ProgramEvent mOutput;
+  ProgramEvent mInput;
+  
     ProgramEvent TranslateEvents(MouseEvent &); // receive event and pass it to menu
     
-    bool Draw(const cv::Mat&);
+    ProgramEvent PopEvent();
+    void PushEvent(ProgramEvent);
+    MouseEvent GetMouseEvent() const;
+    bool Draw(const cv::Mat&,bool busy=false);
     WindowView();
     WindowView(WindowController * prManager);
     WindowView(const WindowView& orig);

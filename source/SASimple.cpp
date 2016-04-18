@@ -6,7 +6,7 @@
  */
 
 #include <opencv2/imgproc.hpp>
-
+#include "../headers/Painter.h"
 #include "../headers/SASimple.h"
 
 SASimple::SASimple () { }
@@ -47,7 +47,6 @@ cv::Mat SASimple::sharpenInclines (cv::Mat& input)
   
   return leftUpper2bottom | rightUpper2bottom | leftBottom2Upper | rightBottom2Upper;
 }
-
 cv::Mat SASimple::sharpenHorizontals (cv::Mat& input)
 {
   cv::Mat kernel =cv::Mat::zeros(3,3,CV_32F);
@@ -89,37 +88,80 @@ cv::Mat SASimple::sharpenVerticals (cv::Mat& input)
 }
 
 
+
+
+void SASimple::SetParameters (void* parameters)
+{
+  this->params=parameters;
+}
+
+cv::Mat SASimple::findContours(cv::Mat & input)
+{
+  
+ // return input;
+  
+
+        cv::Mat output(input.size(),input.type(),cv::Scalar(0));//(input.size(),input.type (),0.f);
+       // cv::Canny (input,output,255,255);
+       
+        std::vector<std::vector<cv::Point> > array;
+        std::vector<cv::Vec4i> hier;
+        
+        cv::findContours (input,array,hier,CV_RETR_TREE,CV_CHAIN_APPROX_SIMPLE);
+        
+        cv::Mat contours(output.size(),output.type(),cv::Scalar(0));
+       
+       for(int i=0;i<array.size ();++i)
+       if(array[i].size()>10)
+        cv::drawContours (contours,array,i,cv::Scalar(255));
+  
+       
+     
+        
+       
+       // cv::imwrite("plik.jpg",contours);
+        
+        return contours;
+        
+        
+}
+
 bool SASimple::Find (ELEMENTS& elements, cv::Mat& input)
 {
- 
   
-  cv::Mat vertical = sharpenVerticals (input);
-  cv::Mat horizontal = sharpenHorizontals(input);
-  cv::Mat inclines = sharpenInclines(input);
+  cv::Mat output;
+  
+  SASimpleParams saparams;
+  saparams.threshold=0.01;
+  
+  
+  saparams.range=static_cast<int>(input.cols/4);
+  if(saparams.range%2==0)
+    saparams.range+=1;
+  
+  if(this->params!=0)
+    saparams.threshold=reinterpret_cast<SASimpleParams*>(params)->threshold;
+  
+  input.copyTo (output);
+ 
+  cv::Mat vertical = sharpenVerticals (output);
+  cv::Mat horizontal = sharpenHorizontals(output);
+  cv::Mat inclines = sharpenInclines(output);
   cv::Mat result = vertical | horizontal | inclines ;
   
+  result.copyTo (outputMat);
+  //outputMat=result ; //findContours(result);
   
-   cv::Mat output;
-   cv::adaptiveThreshold (input,output,255,cv::ADAPTIVE_THRESH_MEAN_C,cv::THRESH_BINARY,input.cols/4+1,0.01);
+  for(int r=0;r<outputMat.rows;++r)
+    for(int w=0;w<outputMat.cols;++w)
+      {
+        if(outputMat.at<unsigned char>(r,w)>saparams.threshold)
+        outputMat.at<unsigned char>(r,w)=255;
+        else
+          outputMat.at<unsigned char>(r,w)=0;
+      }
+  outputMat=findContours(outputMat);
   
- 
-  /*
-  cv::Mat kernel(3,3,CV_32F,cv::Scalar(0));
-  kernel.at <float>(1,0)=-5;
-  kernel.at<float>(1,1)=5;
-   
-  cv::Mat result(output.size(),CV_8U,cv::Scalar(0));
-  cv::Mat right(output.size(),CV_8U,cv::Scalar(0));
-   
-  cv::filter2D (output,right,output.depth(),kernel);
-  kernel.at<float>(1,0)=0;
-  kernel.at<float>(1,2)=-1;
-   
-  cv::filter2D(output,result,-1,kernel);
-   
-  result|=right;
-  */
-  cv::imshow("owe",output);
-  
+  int type=outputMat.type ();
   return false;
 }

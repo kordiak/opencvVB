@@ -7,12 +7,24 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/ElementDetector.cpp</file>
-            <file>file:/home/tester/NetBeansProjects/TesOpenCV/main.cpp</file>
-            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/Calibrator.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/ButtonsList.cpp</file>
             <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/ElementDetector.h</file>
-            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/SASimple.cpp</file>
             <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/SASimple.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/opencvHeaders.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/SearchingAlgorithmBase.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/WindowView.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/ImageSource.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/Painter.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/WindowView.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/Painter.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/SearchingAlgorithmBase.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/ElementDetector.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/ButtonsList.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/ViewThread.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/main.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/SASimple.cpp</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/WindowController.h</file>
+            <file>file:/home/tester/NetBeansProjects/TesOpenCV/headers/ImageSource.h</file>
             <file>file:/home/tester/NetBeansProjects/TesOpenCV/source/WindowController.cpp</file>
         </group>
     </open-files>

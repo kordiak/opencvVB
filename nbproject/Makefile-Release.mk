@@ -36,14 +36,18 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/source/Application.o \
 	${OBJECTDIR}/source/ButtonsList.o \
 	${OBJECTDIR}/source/Calibrator.o \
 	${OBJECTDIR}/source/ElementDetector.o \
 	${OBJECTDIR}/source/FieldWithText.o \
 	${OBJECTDIR}/source/FileReader.o \
 	${OBJECTDIR}/source/ImageSource.o \
+	${OBJECTDIR}/source/PLYGenerator.o \
+	${OBJECTDIR}/source/Painter.o \
 	${OBJECTDIR}/source/SASimple.o \
 	${OBJECTDIR}/source/SearchingAlgorithmBase.o \
+	${OBJECTDIR}/source/ViewThread.o \
 	${OBJECTDIR}/source/WindowController.o \
 	${OBJECTDIR}/source/WindowView.o
 
@@ -77,6 +81,11 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
+${OBJECTDIR}/source/Application.o: source/Application.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Application.o source/Application.cpp
+
 ${OBJECTDIR}/source/ButtonsList.o: source/ButtonsList.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
@@ -107,6 +116,16 @@ ${OBJECTDIR}/source/ImageSource.o: source/ImageSource.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ImageSource.o source/ImageSource.cpp
 
+${OBJECTDIR}/source/PLYGenerator.o: source/PLYGenerator.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/PLYGenerator.o source/PLYGenerator.cpp
+
+${OBJECTDIR}/source/Painter.o: source/Painter.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/Painter.o source/Painter.cpp
+
 ${OBJECTDIR}/source/SASimple.o: source/SASimple.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
@@ -116,6 +135,11 @@ ${OBJECTDIR}/source/SearchingAlgorithmBase.o: source/SearchingAlgorithmBase.cpp
 	${MKDIR} -p ${OBJECTDIR}/source
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/SearchingAlgorithmBase.o source/SearchingAlgorithmBase.cpp
+
+${OBJECTDIR}/source/ViewThread.o: source/ViewThread.cpp 
+	${MKDIR} -p ${OBJECTDIR}/source
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source/ViewThread.o source/ViewThread.cpp
 
 ${OBJECTDIR}/source/WindowController.o: source/WindowController.cpp 
 	${MKDIR} -p ${OBJECTDIR}/source

@@ -45,16 +45,21 @@ void WindowView::onMouse(int eventType,int x,int y,int cos,void* ptr)
   WindowView *disp = reinterpret_cast<WindowView*>(ptr);
   
   MouseEvent event(eventType,x,y);
-  
+ 
   if(disp->mInput!=ProgramEvent::EVENT_FREEZE)
     {
       
         disp->mOutput=disp->TranslateEvents (event);
         if(disp->mOutput==ProgramEvent::EVENT_NOTME && x < width && y < height)
           {
+        
             disp->mOutput=ProgramEvent::EVENT_PAINT;
             disp->mMouseEvent=event;
           }
+        
+           
+       
+        
     }
  // disp->prManager->SendEvent(disp->TranslateEvents (event));
  
@@ -64,7 +69,10 @@ void WindowView::onMouse(int eventType,int x,int y,int cos,void* ptr)
 
 void WindowView::changeSize(const cv::Mat & input,cv::Mat & output)
 {
-  output =cv::Mat(cv::Size(width,height),CV_8U);
+  
+  int w= input.cols / width;
+  int h= input.rows / (w);
+  output =cv::Mat(cv::Size(width,h),CV_8U);
   cv::resize(input,output,output.size(),0,0);
 }
 
@@ -87,26 +95,44 @@ bool WindowView::Draw (const cv::Mat& bigpicture,bool busy)
   unsigned int buttonHeight=50;
   matWhole=cv::Mat(picture.rows+buttonHeight,picture.cols+buttonWidth+1,picture.type (),cv::Scalar(0));
   
-  std::string firstButtonText="Szukaj";
+  std::string firstButtonText="Find";
   cv::Rect firstButtonPos(picture.cols+1,1,buttonWidth,buttonHeight);
   
-  std::string secondButtonText="Koryguj";
+  std::string secondButtonText="Calib";
   cv::Rect secondButtonPos(firstButtonPos);
   secondButtonPos.y+=buttonHeight+1;
   
-  std::string thirdButtonText="Zaznacz";
+  std::string thirdButtonText="Select";
   cv::Rect thirdButtonPos(secondButtonPos);
   thirdButtonPos.y+=buttonHeight+1;
   
-  std::string fourthButtonText="Zamknij";
+  std::string fourthButtonText="Close";
   cv::Rect fourthButtonPos(thirdButtonPos);
   fourthButtonPos.y+=buttonHeight+1;
+  
+  std::string fifthButtonText="Draw";
+  cv::Rect fifthButtonPos(fourthButtonPos);
+  fifthButtonPos.y+=buttonHeight+1;
+  
+  std::string sixthButtonText="Refresh";
+  cv::Rect sixthButtonPos(fifthButtonPos);
+  sixthButtonPos.y+=buttonHeight+1;
+  
+  std::string seventhButtonText="Background";
+  cv::Rect seventhButtonPos(sixthButtonPos);
+  seventhButtonPos.y+=buttonHeight+1;
+  
+  
   
   
   mMenu.addElement(new FieldWithText(firstButtonPos,firstButtonText,ProgramEvent::EVENT_SEARCH));
   mMenu.addElement(new FieldWithText(secondButtonPos,secondButtonText,ProgramEvent::EVENT_CALIBRATE));
   mMenu.addElement (new FieldWithText(thirdButtonPos,thirdButtonText,ProgramEvent::EVENT_SELECT));
   mMenu.addElement(new FieldWithText(fourthButtonPos,fourthButtonText,ProgramEvent::EVENT_CLOSE));
+  mMenu.addElement(new FieldWithText(fifthButtonPos,fifthButtonText,ProgramEvent::EVENT_LINE));
+  mMenu.addElement (new FieldWithText(sixthButtonPos,sixthButtonText,ProgramEvent::EVENT_LOADNEWIMAGE));
+  mMenu.addElement( new FieldWithText(seventhButtonPos,seventhButtonText,ProgramEvent::EVENT_SELECT_BG));
+  
   mMenu.draw(matWhole);
   }
   

@@ -6,7 +6,8 @@
  */
 
 #include "../headers/ImageSource.h"
-
+#include <thread>
+#include <chrono>
 ///TODO : PRzenieść kod z każdej platrofmy do osobnego pliku, i zrobić include w zależności od systemu w cmaku, przeniesc dzialanie na foldreach do osobnej klasy
 
 #if  !defined(__CYGWIN__) && defined(_WIN32) || defined(WIN32) || defined(__WIN32) 
@@ -141,12 +142,12 @@ ImageSource::getFilesName (const char* filename, FILENAMES & filenames)
     {
       while ((ent = readdir (dir)) != 0)
         {
-          std::string path=filename;
-          path+="/";
-          path+=ent->d_name;
+          std::string path = filename;
+          path += "/";
+          path += ent->d_name;
           std::cout << path;
           filenames.push_back (path);
-         
+
         }
       closedir (dir);
     }
@@ -156,51 +157,63 @@ ImageSource::getFilesName (const char* filename, FILENAMES & filenames)
   return false;
 }
 
-ImageSource::ImageSource (const char* filename, int type) : position (0), eos(false)
+ImageSource::ImageSource (const char* filename, int type) : position (0), eos (false)
 {
 
-  
-  
+
+
   if (isHttp (filename))
     {
-      type = source_type::http;
-      std::cout << "Http";
+      mType = source_type::http;
+      
+      cap.open (filename);
+       
+      if (!cap.isOpened () && !cap.grab ())
+        {
+          this->eos = true;
+          throw ImageSource::ImageSourceException("Unable to connect to server: " DEVICE_IP);
+          //throw ImageSource::ImageSourceException();
+         
+        }
+     
     }
   else if (isDirectory (filename))
     {
 
       std::cout << "Directory";
       this->getFilesName (filename, files);
+      type=source_type::photo;
 
     }
   else
     {
       std::cout << "Photo";
       files.push_back (filename);
+      type = source_type::photo;
     }
+
   
-  type = source_type::photo;
 }
 
-ImageSource::ImageSource (const ImageSource& orig) {
- }
+ImageSource::ImageSource (const ImageSource& orig) { }
 
 ImageSource::~ImageSource ()
 {
 
 
+  cap.release ();
 
   unsigned int size = images.size ();
   for (unsigned int i = 0; i < size; ++i)
     {
-     // delete images[i];
+      // delete images[i];
     }
 }
 
 ImageSource::source_type
 ImageSource::GetType () const
 {
-  return type;
+  return mType;
 }
 
 cv::Mat
@@ -208,28 +221,55 @@ ImageSource::GetImage ()
 {
   cv::Mat newMat;
 
-  
-  if (!files.empty ())
-    {
-      while (newMat.empty () && position < files.size ())
-        {
-          //std::cout << std::endl << files[position];
-          newMat = cv::imread (files[position].c_str(),CV_LOAD_IMAGE_GRAYSCALE);
-          position++;
 
-        }
+  switch (mType)
+    {
+    case http:
+      {
+        if (!this->eos)
+          {
+            for (int counter = 0; counter < 30; counter++)
+              {
+                if (cap.grab () && cap.retrieve (newMat))
+                  {
+
+
+                    cv::cvtColor (newMat, newMat, CV_RGB2GRAY);
+                    return newMat;
+                    break;
+                  }
+                std::this_thread::__sleep_for (std::chrono::seconds (0), std::chrono::nanoseconds (1000000000));
+
+              }
+          }
+        break;
+      }
+    default:
+      {
+        if (!files.empty ())
+          {
+            while (newMat.empty () && position < files.size ())
+              {
+                //std::cout << std::endl << files[position];
+                newMat = cv::imread (files[position].c_str (), CV_LOAD_IMAGE_GRAYSCALE);
+                position++;
+              }
+
+          }
+      }
 
     }
-  
-  if(newMat.empty())
+
+  if (newMat.empty ())
     {
-      eos=true;
-      return cv::Mat(10,10,CV_8UC1,cv::Scalar(0));
+      eos = true;
+      return cv::Mat (10, 10, CV_8UC1, cv::Scalar (0));
     }
   return newMat;
 }
 
-bool ImageSource::EOS() const
+bool
+ImageSource::EOS () const
 {
   return eos;
 }

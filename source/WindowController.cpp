@@ -17,7 +17,7 @@ WindowController::WindowController () : mDisplayer(0), mDetector(0), mCalibrator
   this->mDetector = new ElementDetector(this);
   this->mCalibrator = new Calibrator();
   this->mPainter = new Painter();
-  this->mImageSource=new ImageSource("sos/czerowny.jpg");
+  this->mImageSource=new ImageSource(DEVICE_IP);
   
 }
 
@@ -34,6 +34,7 @@ void WindowController::displayLoop (WindowController* pointer, cv::Mat* pattern)
     {
        
      cv::createTrackbar ("Filter threshold","output",&pointer->threshold,10);
+    
      pointer->mDisplayer->Draw (*pattern);   
      
     }
@@ -50,6 +51,8 @@ void WindowController::programLoop (WindowController* pointer, cv::Mat* pattern)
       int i=0;
       while(pointer->run)
         {
+         
+          
           pointer->mDisplayer->PushEvent(ProgramEvent::EVENT_FREEZE);
           //*pattern/=2;
           switch(pointer->mDisplayer->PopEvent())
@@ -71,12 +74,27 @@ void WindowController::programLoop (WindowController* pointer, cv::Mat* pattern)
               
             case ProgramEvent::EVENT_PAINT:
             {
-              MouseEvent mouse=pointer->mDisplayer->GetMouseEvent ();
               
+              MouseEvent mouse=pointer->mDisplayer->GetMouseEvent ();           
               pointer->mPainter->Draw (mouse.x,mouse.y,mouse.eventType);
+             
             }
               break;
+            case ProgramEvent::EVENT_LINE:
+              pointer->mPainter->State (PainterState::LINE);
+              pointer->mPainter->Color (255);
+              break;
             case ProgramEvent::EVENT_SELECT:
+              pointer->mPainter->State (PainterState::FLOOD);
+              break;
+            case ProgramEvent::EVENT_SELECT_BG:
+              pointer->mPainter->State (PainterState::FLOOD_BG);
+              break;
+            case ProgramEvent::EVENT_LOADNEWIMAGE:
+              cv::Mat & refToPattern=*pattern;
+              cv::Mat temp;
+              temp=pointer->mImageSource->GetImage ();
+              pointer->mCalibrator->Undistort (temp,refToPattern);
               break;
             }
          // *pattern*=2;
@@ -147,16 +165,17 @@ WindowController::Run ()
 
   result |= right;
   */
-  
-    ImageSource fr("sos/czerwony.jpg");
+   // ImageSource fr("sos/czerwony.jpg");
+    ImageSource fr(DEVICE_IP);
+    
     Calibrator calib;
     cv::Size sizeOfPattern(9,6);
     calib.Calibrate ("sos/chess",sizeOfPattern);
     
     SASimple *sas=new SASimple;
   //  ElementDetector detectorInternal(sas);
-    
-    cv::Mat input=fr.GetImage ();
+   
+    cv::Mat input= this->mImageSource->GetImage ();
     //cv::cvtColor(input,input,CV_BGR2GRAY);
     cv::Mat pattern;
     calib.Undistort (input,pattern);
@@ -164,12 +183,7 @@ WindowController::Run ()
    // detectorInternal.Detect(pattern);
    // WindowController * pt=this;
    
-    
-    
-    mPainter->Image (&pattern);
-  
-    
-    
+    mPainter->Image (&pattern); 
     mDetector->SetAlgorithm (sas);
     
     displayLoop (this,&pattern);

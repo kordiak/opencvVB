@@ -9,7 +9,7 @@
 #ifndef PAINTER_H
 #define	PAINTER_H
 
-enum PainterState { LINE,POINT };
+enum PainterState { LINE,FLOOD,FLOOD_BG };
 
 class Painter
 {
@@ -33,7 +33,8 @@ public:
   virtual ~Painter ();
 private:
   
-  
+  void
+floodfill (std::vector<cv::Point> & pointsOfLine, cv::Mat * ptr, int u, int v);
   void drawLine(int u, int v);
   void drawPoint(int u, int v);
   

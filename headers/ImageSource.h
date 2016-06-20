@@ -19,8 +19,6 @@
 
 typedef std::vector<std::string> FILENAMES;
 
-
-
 class ImageSource
 {
 private:
@@ -28,12 +26,11 @@ private:
   bool eos;
   std::vector<cv::Mat*> images;
   cv::Mat picture;
+  cv::VideoCapture cap;
   
   FILENAMES files;
   
   unsigned int position;
-  
-  
   bool isHttp(const char* link);
   bool isDirectory(const char* link);
   bool getFilesName(const char* filename,FILENAMES&);
@@ -41,7 +38,11 @@ private:
   void stringtolower(char *);
   
 public:
-  
+  class ImageSourceException: public CamMeasurmentException 
+  {
+    public:
+      ImageSourceException(const std::string & arg): CamMeasurmentException(arg){}
+  };
   enum source_type {photo,http,video};
   ImageSource (const char* filename,int type=-1);
   ImageSource (const ImageSource& orig);
@@ -52,7 +53,7 @@ public:
   
 
 private:
-  source_type type;
+  source_type mType;
 
 };
 

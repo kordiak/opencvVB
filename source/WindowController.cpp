@@ -17,7 +17,7 @@ WindowController::WindowController () : mDisplayer(0), mDetector(0), mCalibrator
   this->mDetector = new ElementDetector(this);
   this->mCalibrator = new Calibrator();
   this->mPainter = new Painter();
-  this->mImageSource=new ImageSource(DEVICE_IP);
+  this->mImageSource=new ImageSource(SOURCE_PATH.c_str ());
   
 }
 
@@ -166,7 +166,7 @@ WindowController::Run ()
   result |= right;
   */
    // ImageSource fr("sos/czerwony.jpg");
-    ImageSource fr(DEVICE_IP);
+    //ImageSource fr(SOURCE_PATH.c_str ());
     
     Calibrator calib;
     cv::Size sizeOfPattern(9,6);
@@ -178,6 +178,9 @@ WindowController::Run ()
     cv::Mat input= this->mImageSource->GetImage ();
     //cv::cvtColor(input,input,CV_BGR2GRAY);
     cv::Mat pattern;
+    
+    
+   // input.copyTo (pattern);
     calib.Undistort (input,pattern);
    
    // detectorInternal.Detect(pattern);

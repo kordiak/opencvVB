@@ -153,10 +153,29 @@ void detectAndDisplay( Mat frame )
    * */
 }
 
+
+int materialWmm;
+int materialHmm;
+std::string SOURCE_PATH;
 int
 main (int argc, char** argv)
 {
- // surf.
+
+  if(argc>2)
+    {
+      materialWmm=atoi(argv[1]);
+      materialHmm=atoi(argv[2]);
+      
+      
+      if(argc>3)
+        {
+          SOURCE_PATH=std::string(argv[3]);
+        }
+      else
+        SOURCE_PATH="zBlacha.jpg";
+    }
+  
+  // surf.
   
   
    /*

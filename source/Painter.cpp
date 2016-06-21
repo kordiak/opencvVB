@@ -15,8 +15,7 @@ int tableWidth = 0;
 int tableHeight = 0;
 float tableWidthMM =318.5f;
 float tableHeightMM= 224;
-int materialWmm=1000;
-int materialHmm=1000;
+
 
 typedef std::map<int, int> Axis;
 typedef std::pair<cv::Point, cv::Point> PairOfPoints;
@@ -197,6 +196,8 @@ Painter::floodfill (std::vector<cv::Point> & pointsOfLine, cv::Mat * ptr, int u,
       float materialHpx= materialHmm/mm2pxH;
       
 
+      
+     
       generator.Generate (pointsOfLine,xMax-xMin,yMax-yMin,materialWpx,materialHpx);
       
     }

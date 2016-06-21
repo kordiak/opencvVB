@@ -27,8 +27,13 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 4000 4000</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 4000 4000 sos/czerwony.jpg</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000 http://192.168.43.1:8080</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000 http://192.168.43.1:8080/video?x.mjpeg</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}" 2000 2000</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>
@@ -60,8 +65,13 @@
       <runprofile version="9">
         <runcommandpicklist>
           <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 4000 4000</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 4000 4000 sos/czerwony.jpg</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000 http://192.168.43.1:8080</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000 http://192.168.43.1:8080/video?x.mjpeg</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" 2000 2000</runcommandpicklistitem>
         </runcommandpicklist>
-        <runcommand>"${OUTPUT_PATH}"</runcommand>
+        <runcommand>"${OUTPUT_PATH}" 2000 2000</runcommand>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <terminal-type>0</terminal-type>

@@ -20,10 +20,12 @@
 #include <string>
 
 //#define DEVICE_IP "http://192.168.0.100:8080/video?x.mjpeg"
-#define DEVICE_IP "sos/czerwony.jpg"
+#define DEVICE_IP "matches"
 const int height=300;
 const int width=400;
-
+extern int materialWmm;
+extern int materialHmm;
+extern std::string SOURCE_PATH;
 
 
 class CamMeasurmentException : public std::runtime_error
